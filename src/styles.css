@@ -1,3 +1,26 @@
 /* You can add global styles to this file, and also import other style files */
 
 @import 'tailwindcss';
+
+/* Brutalist type system: a grotesque for UI, a mono for data/code. */
+@theme {
+  --font-sans: 'Space Grotesk', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'Space Mono', ui-monospace, 'SFMono-Regular', monospace;
+}
+
+/* Raw graph-paper backdrop — the "exposed structure" of brutalism. */
+html,
+body {
+  background-color: #eceae2;
+  background-image:
+    linear-gradient(rgba(0, 0, 0, 0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 0, 0, 0.07) 1px, transparent 1px);
+  background-size: 24px 24px;
+  color: #000;
+}
+
+/* Chunky, unapologetic text selection. */
+::selection {
+  background: #facc15;
+  color: #000;
+}
