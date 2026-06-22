@@ -1,12 +1,12 @@
 import { Component, signal } from '@angular/core';
-import { form, required, minLength, submit, FormField } from '@angular/forms/signals';
+import { form, required, minLength, FormField, FormRoot } from '@angular/forms/signals';
 
 @Component({
   selector: 'app-signup-page',
   templateUrl: './signup-page.html',
-  imports: [FormField],
+  imports: [FormField, FormRoot],
 })
-export class Signup {
+export class SignupPage {
   readonly #model = signal({
     firstName: '',
     lastName: '',
@@ -36,8 +36,4 @@ export class Signup {
       },
     },
   );
-
-  signup(): Promise<boolean> {
-    return submit(this.userForm);
-  }
 }

@@ -1,11 +1,11 @@
 import { Component, inject } from '@angular/core';
-import { CATEGORIES, ProductStore } from './product-store';
+import { CATEGORIES, ProductsPageStore } from './products-page-store';
 
 @Component({
   selector: 'app-products-page',
   templateUrl: './products-page.html',
 })
 export class ProductsPage {
-  protected readonly store = inject(ProductStore);
+  protected readonly store = inject(ProductsPageStore);
   protected readonly categories = CATEGORIES;
 }

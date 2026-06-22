@@ -2,7 +2,7 @@ import { Injectable, signal, declareExperimentalWebMcpTool } from '@angular/core
 import { delay } from '../utils';
 
 @Injectable()
-export class Counter {
+export class CounterPageStore {
   readonly count = signal(0);
 
   constructor() {

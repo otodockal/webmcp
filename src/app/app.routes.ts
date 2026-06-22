@@ -1,20 +1,20 @@
 import { inject, provideExperimentalWebMcpTools } from '@angular/core';
 import { Routes } from '@angular/router';
 import { CounterPage } from './pages/counter-page';
-import { Signup } from './pages/signup-page';
+import { SignupPage } from './pages/signup-page';
 import { ProductsPage } from './pages/products-page';
-import { Product, ProductStore } from './pages/product-store';
+import { Product, ProductsPageStore } from './pages/products-page-store';
 
 const describe = (p: Product) => `${p.name} (${p.category}) — $${p.price} [id: ${p.id}]`;
 
 export const routes: Routes = [
-  { path: '', component: Signup },
+  { path: '', component: SignupPage },
   { path: 'counter', component: CounterPage },
   {
     path: 'products',
     component: ProductsPage,
     providers: [
-      ProductStore,
+      ProductsPageStore,
       provideExperimentalWebMcpTools([
         {
           name: 'searchProducts',
@@ -31,7 +31,7 @@ export const routes: Routes = [
           },
           execute: (args: unknown) => {
             const { query } = args as { query?: string };
-            const store = inject(ProductStore);
+            const store = inject(ProductsPageStore);
             store.setQuery(query ?? '');
             const matches = store.visibleProducts();
             if (matches.length === 0) {
@@ -57,7 +57,7 @@ export const routes: Routes = [
           },
           execute: (args: unknown) => {
             const { category } = args as { category: string };
-            const store = inject(ProductStore);
+            const store = inject(ProductsPageStore);
             if (category.trim().toLowerCase() === 'all') {
               store.setCategory(null);
               return 'Cleared the category filter.';
@@ -91,7 +91,7 @@ export const routes: Routes = [
           },
           execute: (args: unknown) => {
             const { product, quantity } = args as { product: string; quantity?: number };
-            const store = inject(ProductStore);
+            const store = inject(ProductsPageStore);
             const qty = quantity ?? 1;
             // The schema documents the shape, but always validate inputs yourself.
             if (!Number.isInteger(qty) || qty < 1) {
@@ -111,7 +111,7 @@ export const routes: Routes = [
           description: 'Returns the current contents of the cart and the total price.',
           inputSchema: { type: 'object', properties: {} },
           execute: () => {
-            const store = inject(ProductStore);
+            const store = inject(ProductsPageStore);
             const lines = store.cartLines();
             if (lines.length === 0) {
               return 'The cart is empty.';
@@ -127,7 +127,7 @@ export const routes: Routes = [
           description: 'Removes everything from the cart.',
           inputSchema: { type: 'object', properties: {} },
           execute: () => {
-            const store = inject(ProductStore);
+            const store = inject(ProductsPageStore);
             store.clearCart();
             return 'Cart cleared.';
           },

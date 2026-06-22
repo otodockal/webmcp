@@ -25,7 +25,7 @@ const CATALOG: readonly Product[] = [
 export const CATEGORIES: readonly string[] = [...new Set(CATALOG.map((p) => p.category))];
 
 /**
- * Holds the product catalog and shopping cart for the shop page.
+ * Holds the product catalog and shopping cart for the products page.
  *
  * This service is plain state + logic with no WebMCP imports. It is provided at
  * the route level (see `app.routes.ts`), so the same instance is shared by the
@@ -33,7 +33,7 @@ export const CATEGORIES: readonly string[] = [...new Set(CATALOG.map((p) => p.ca
  * the user navigates away from the route.
  */
 @Injectable()
-export class ProductStore {
+export class ProductsPageStore {
   /** Free-text filter applied to the visible grid. */
   readonly query = signal('');
   /** Category filter; `null` means "all categories". */

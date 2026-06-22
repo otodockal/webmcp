@@ -1,11 +1,11 @@
 import { Component, inject } from '@angular/core';
-import { Counter } from './counter';
+import { CounterPageStore } from './counter-page-store';
 
 @Component({
   selector: 'app-counter-page',
   templateUrl: './counter-page.html',
-  providers: [Counter],
+  providers: [CounterPageStore],
 })
 export class CounterPage {
-  protected readonly counter = inject(Counter);
+  protected readonly counter = inject(CounterPageStore);
 }

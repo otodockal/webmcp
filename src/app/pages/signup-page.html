@@ -1,5 +1,5 @@
-<form class="flex w-full flex-col gap-5 text-left" (submit)="$event.preventDefault(); signup()">
-  <h2 class="text-3xl font-bold uppercase tracking-tighter">Sign up a user</h2>
+<form [formRoot]="userForm" class="flex w-full flex-col gap-6 text-left">
+  <h1 class="text-4xl font-bold uppercase tracking-tighter">Sign up</h1>
   <p class="border-l-4 border-black bg-yellow-100 px-3 py-2 text-sm font-medium">
     An agent can fill and submit this form through the implicit
     <code class="border-2 border-black bg-black px-1 font-mono text-xs text-yellow-300"
@@ -8,42 +8,44 @@
     tool. You can also fill it in by hand.
   </p>
 
-  <label class="flex flex-col gap-1.5">
-    <span class="text-xs font-bold uppercase tracking-widest">First name</span>
-    <input
-      class="border-4 border-black bg-white px-3 py-2 font-mono focus:bg-yellow-100 focus:outline-none"
-      type="text"
-      [formField]="userForm.firstName"
-    />
-    @if (userForm.firstName().touched() && !userForm.firstName().valid()) {
-      <span class="border-2 border-black bg-red-400 px-2 py-1 text-xs font-bold uppercase">{{
-        userForm.firstName().errors()[0]?.message
-      }}</span>
-    }
-  </label>
+  <div class="flex w-full flex-col gap-5">
+    <label class="flex flex-col gap-1.5">
+      <span class="text-xs font-bold uppercase tracking-widest">First name</span>
+      <input
+        [formField]="userForm.firstName"
+        class="border-4 border-black bg-white px-3 py-2 font-mono focus:bg-yellow-100 focus:outline-none"
+        type="text"
+      />
+      @if (userForm.firstName().touched() && !userForm.firstName().valid()) {
+        <span class="border-2 border-black bg-red-400 px-2 py-1 text-xs font-bold uppercase">{{
+          userForm.firstName().errors()[0]?.message
+        }}</span>
+      }
+    </label>
 
-  <label class="flex flex-col gap-1.5">
-    <span class="text-xs font-bold uppercase tracking-widest">Last name</span>
-    <input
-      class="border-4 border-black bg-white px-3 py-2 font-mono focus:bg-yellow-100 focus:outline-none"
-      type="text"
-      [formField]="userForm.lastName"
-    />
-    @if (userForm.lastName().touched() && !userForm.lastName().valid()) {
-      <span class="border-2 border-black bg-red-400 px-2 py-1 text-xs font-bold uppercase">{{
-        userForm.lastName().errors()[0]?.message
-      }}</span>
-    }
-  </label>
+    <label class="flex flex-col gap-1.5">
+      <span class="text-xs font-bold uppercase tracking-widest">Last name</span>
+      <input
+        [formField]="userForm.lastName"
+        class="border-4 border-black bg-white px-3 py-2 font-mono focus:bg-yellow-100 focus:outline-none"
+        type="text"
+      />
+      @if (userForm.lastName().touched() && !userForm.lastName().valid()) {
+        <span class="border-2 border-black bg-red-400 px-2 py-1 text-xs font-bold uppercase">{{
+          userForm.lastName().errors()[0]?.message
+        }}</span>
+      }
+    </label>
 
-  <label class="flex flex-col gap-1.5">
-    <span class="text-xs font-bold uppercase tracking-widest">Age</span>
-    <input
-      class="border-4 border-black bg-white px-3 py-2 font-mono focus:bg-yellow-100 focus:outline-none"
-      type="number"
-      [formField]="userForm.age"
-    />
-  </label>
+    <label class="flex flex-col gap-1.5">
+      <span class="text-xs font-bold uppercase tracking-widest">Age</span>
+      <input
+        [formField]="userForm.age"
+        class="border-4 border-black bg-white px-3 py-2 font-mono focus:bg-yellow-100 focus:outline-none"
+        type="number"
+      />
+    </label>
+  </div>
 
   <button
     type="submit"
